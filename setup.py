@@ -8,7 +8,7 @@ HYPEN_E_DOT = '-e .'
 requirements.txt—This file is used by pip to install all of the dependencies for your application.
  In this case, it contains only -e . This tells pip to install the requirements specified in setup.py. 
  It also tells pip to run
-So it tells pip to install the requirements specified in setup.py.
+So it tells pip to install the requirements specified in setup.py and run after setup.py.
 '''
 def get_requirements(file_path:str)->List[str]:
     '''
