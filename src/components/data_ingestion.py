@@ -1,11 +1,17 @@
-import os 
+import os
 import sys
-from src.logger import logging
 from src.exception import customException
-from sklearn.model_selection import train_test_split
-from dataclasses import dataclass
+from src.logger import logging
 import pandas as pd
 
+from sklearn.model_selection import train_test_split
+from dataclasses import dataclass
+
+from src.components.data_transformation import DataTransformation
+from src.components.data_transformation import DataTransformationConfig
+
+from src.components.model_trainer import ModelTrainerConfig
+from src.components.model_trainer import ModelTrainer
 
 '''
 قبل استخدام dataclass (كود تقليدي):
@@ -54,6 +60,9 @@ class Person:
 
 p = Person("Ali", 25)
 p.age = 30  # ❌ سيعطي خطأ لأن الكلاس "مجمد"
+
+Ce module fournit un décorateur et des fonctions pour générer automatiquement les méthodes spéciales comme __init__() et __repr__() 
+dans les Classes de Données définies par l’utilisateur.
 '''
 
 
@@ -106,3 +115,9 @@ class DataIngestion:
 if __name__=="__main__":
     obj=DataIngestion()
     train_data,test_data=obj.initiate_data_ingestion()
+
+    data_transformation=DataTransformation()
+    train_arr,test_arr,_=data_transformation.initiate_data_transformation(train_data,test_data)
+
+    modeltrainer=ModelTrainer()
+    print(modeltrainer.initiate_model_trainer(train_arr,test_arr))
